@@ -3,6 +3,7 @@
 //
 
 #include "Automate.h"
+#include "Etat.h"
 
 Automate::Automate(const string& expr, bool nombreNegatif) {
     this->lexer = new Lexer(expr);

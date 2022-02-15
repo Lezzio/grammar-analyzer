@@ -6,10 +6,10 @@
 #define TPCOMPIL_AUTOMATE_H
 
 #include "symbole.h"
-#include "Etat.h"
 #include "Lexer.h"
 #include <deque>
 
+class Etat;
 using namespace std;
 
 class Automate {
