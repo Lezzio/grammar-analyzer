@@ -15,11 +15,15 @@ using namespace std;
 class Automate {
 
 public:
-    Automate(const string &expression, bool nombreNegatif);
+    Automate(const string &expression);
 
     void decalage(Symbole *s, Etat *e);
 
     void reduction(int n, Symbole *s);
+
+    Expr * popSymbol();
+
+    void popAndDestroySymbol();
 
 private:
     deque<Symbole *> symbolestack;

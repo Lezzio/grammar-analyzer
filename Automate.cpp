@@ -5,9 +5,9 @@
 #include "Automate.h"
 #include "Etat.h"
 
-Automate::Automate(const string& expr, bool nombreNegatif) {
+Automate::Automate(const string &expr) {
     this->lexer = new Lexer(expr);
-    auto * etatInitial = new E0();
+    auto *etatInitial = new E0();
     statestack.push_back(etatInitial);
 }
 
@@ -21,8 +21,16 @@ void Automate::decalage(Symbole *s, Etat *e) {
 
 void Automate::reduction(int n, Symbole *s) {
     for (int i = 0; i < n; i++) {
-        delete(statestack.back());
+        delete (statestack.back());
         statestack.pop_back();
     }
     statestack.back()->transition(*this, s);
+}
+
+Expr *Automate::popSymbol() {
+    return dynamic_cast<Expr *>(symbolestack.front());
+}
+
+void Automate::popAndDestroySymbol() {
+    
 }

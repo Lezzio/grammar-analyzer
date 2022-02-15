@@ -3,7 +3,7 @@
 #include <string>
 
 #include "Automate.h"
-#include "symbole.h"
+#include "Symbole.h"
 using namespace std;
 
 /**
@@ -18,7 +18,7 @@ public:
      * 
      * @param name 
      */
-    Etat(string name);
+    explicit Etat(string name);
 
     /**
      * @brief Destroy the Etat object
@@ -26,7 +26,7 @@ public:
      */
     virtual ~Etat();
 
-    /**
+    virtual /**
      * @brief 
      * 
      */
