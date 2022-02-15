@@ -7,6 +7,9 @@
 using namespace std;
 
 
+
+
+
 /**
  * @brief 
  * 
@@ -54,8 +57,8 @@ class E0 : public Etat {
         E0();
         virtual ~E0();
         void print() const;
-        virtual bool transition(Automate &automate,
-                            Symbole *s);
+        bool transition(Automate &automate,
+                            Symbole *s) override;
 };
 
 class E1 : public Etat {
@@ -63,8 +66,8 @@ class E1 : public Etat {
         E1();
         virtual ~E1();
         void print() const;
-        virtual bool transition(Automate &automate,
-                            Symbole *s);
+        bool transition(Automate &automate,
+                            Symbole *s) override;
 };
 
 class E2 : public Etat {
@@ -72,8 +75,8 @@ class E2 : public Etat {
         E2();
         virtual ~E2();
         void print() const;
-        virtual bool transition(Automate &automate,
-                            Symbole *s);
+        bool transition(Automate &automate,
+                            Symbole *s) override;
 };
 
 class E3 : public Etat {
@@ -81,8 +84,8 @@ class E3 : public Etat {
         E3();
         virtual ~E3();
         void print() const;
-        virtual bool transition(Automate &automate,
-                            Symbole *s);
+        bool transition(Automate &automate,
+                            Symbole *s) override;
 };
 
 class E4 : public Etat {
@@ -90,8 +93,8 @@ class E4 : public Etat {
         E4();
         virtual ~E4();
         void print() const;
-        virtual bool transition(Automate &automate,
-                            Symbole *s);
+        bool transition(Automate &automate,
+                            Symbole *s) override;
 };
 
 class E5 : public Etat {
@@ -99,8 +102,8 @@ class E5 : public Etat {
         E5();
         virtual ~E5();
         void print() const;
-        virtual bool transition(Automate &automate,
-                            Symbole *s);
+        bool transition(Automate &automate,
+                            Symbole *s) override;
 };
 
 class E6 : public Etat {
@@ -108,8 +111,8 @@ class E6 : public Etat {
         E6();
         virtual ~E6();
         void print() const;
-        virtual bool transition(Automate &automate,
-                            Symbole *s);
+        bool transition(Automate &automate,
+                            Symbole *s) override;
 };
 
 class E7 : public Etat {
@@ -117,8 +120,8 @@ class E7 : public Etat {
         E7();
         virtual ~E7();
         void print() const;
-        virtual bool transition(Automate &automate,
-                            Symbole *s);
+        bool transition(Automate &automate,
+                            Symbole *s) override;
 };
 
 class E8 : public Etat {
@@ -126,8 +129,8 @@ class E8 : public Etat {
         E8();
         virtual ~E8();
         void print() const;
-        virtual bool transition(Automate &automate,
-                            Symbole *s);
+        bool transition(Automate &automate,
+                            Symbole *s) override;
 };
 
 class E9 : public Etat {
@@ -135,6 +138,6 @@ class E9 : public Etat {
         E9();
         virtual ~E9();
         void print() const;
-        virtual bool transition(Automate &automate,
-                            Symbole *s);
+        bool transition(Automate &automate,
+                            Symbole *s) override;
 };
