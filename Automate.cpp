@@ -6,7 +6,8 @@
 
 Automate::Automate(const string& expr, bool nombreNegatif) {
     this->lexer = new Lexer(expr);
-    //statestack.push_back();
+    auto * etatInitial = new E0();
+    statestack.push_back(etatInitial);
 }
 
 void Automate::decalage(Symbole *s, Etat *e) {
