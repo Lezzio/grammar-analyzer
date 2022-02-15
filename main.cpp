@@ -2,7 +2,7 @@
 #include "lexer.h"
 
 
-int main(void) {
+int main() {
    string chaine("(1+34)*123");
 
    Lexer l(chaine);
@@ -15,4 +15,3 @@ int main(void) {
    }
    return 0;
 }
-
