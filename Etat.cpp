@@ -33,7 +33,7 @@ bool E0::transition(Automate &automate, Symbole *s)
         automate.decalage(s, new E1);
         break;
     default: 
-        delete (s)
+        delete (s);
         automate.decalage(new Symbole(ERREUR), nullptr);
         return false;
     }
@@ -93,7 +93,7 @@ bool E2::transition(Automate &automate, Symbole *s)
         automate.decalage(s, new E6);
         break;
     default: 
-        delete (s)
+        delete (s);
         automate.decalage(new Symbole(ERREUR), nullptr);
         return false;
     }
@@ -120,7 +120,7 @@ bool E3::transition(Automate &automate, Symbole *s)
         automate.reduction(1, s);
         break;    
     default: 
-        delete (s)
+        delete (s);
         automate.decalage(new Symbole(ERREUR), nullptr);
         return false;
     }
@@ -150,7 +150,7 @@ bool E4::transition(Automate &automate, Symbole *s)
         automate.decalage(s, new E7);
         break;
     default: 
-        delete (s)
+        delete (s);
         automate.decalage(new Symbole(ERREUR), nullptr);
         return false;
     }
@@ -180,7 +180,7 @@ bool E5::transition(Automate &automate, Symbole *s)
         automate.decalage(s, new E8);
         break;
     default: 
-        delete (s)
+        delete (s);
         automate.decalage(new Symbole(ERREUR), nullptr);
         return false;
     }
@@ -210,7 +210,7 @@ bool E6::transition(Automate &automate, Symbole *s)
         automate.decalage(s, new E9);
         break;
     default: 
-        delete (s)
+        delete (s);
         automate.decalage(new Symbole(ERREUR), nullptr);
         return false;
     }
@@ -233,13 +233,16 @@ bool E7::transition(Automate &automate, Symbole *s)
     case PLUS:
     case CLOSEPAR:
     case FIN:
-        automate.reduction(3, s);
+        Expr * s1 = (Expr *) automate.popSymbol();
+        automate.popAndDestroySymbol();
+        Expr * s2 = (Expr *) automate.popSymbol();
+        automate.reduction(3, new ExprPlus(s2, s1));
         break;  
     case MUTL:
         automate.decalage(s, new E5);    
         break;       
     default: 
-        delete (s)
+        delete (s);
         automate.decalage(new Symbole(ERREUR), nullptr);
         return false;
     }
@@ -263,10 +266,13 @@ bool E8::transition(Automate &automate, Symbole *s)
     case MUTL:
     case CLOSEPAR:
     case FIN:
-        automate.reduction(3, s);
-        break;        
+        Expr * s1 = (Expr *) automate.popSymbol();
+        automate.popAndDestroySymbol();
+        Expr * s2 = (Expr *) automate.popSymbol();
+        automate.reduction(3, new ExprMult(s2, s1));
+        break;      
     default: 
-        delete (s)
+        delete (s);
         automate.decalage(new Symbole(ERREUR), nullptr);
         return false;
     }
@@ -293,7 +299,7 @@ bool E9::transition(Automate &automate, Symbole *s)
         automate.reduction(3, s);
         break;        
     default: 
-        delete (s)
+        delete (s);
         automate.decalage(new Symbole(ERREUR), nullptr);
         return false;
     }
