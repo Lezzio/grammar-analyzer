@@ -1,7 +1,7 @@
 ## TODO : adapter
 
 CPP=g++
-EXE = analog
+EXE = main
 
 DEBUG= no
 ifeq ($(DEBUG),yes)
@@ -14,7 +14,7 @@ VALGRINDFLAGS = --leak-check=full
 ECHO= @echo
 RM = rm 
 EFFACE = clear
-SRC= Analog.cpp Graph.cpp LogRead.cpp
+SRC= Lexer.cpp symbole.cpp Automate.cpp etat.cpp main.cpp
 OBJ= $(SRC:.cpp=.o)
 
 #éditions des liens
