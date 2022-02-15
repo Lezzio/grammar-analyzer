@@ -9,66 +9,60 @@ enum Identificateurs { OPENPAR, CLOSEPAR, PLUS, MULT, INT, FIN, ERREUR, EXPR};
 const string Etiquettes[] = { "OPENPAR", "CLOSEPAR", "PLUS", "MULT", "INT", "FIN", "ERREUR"};
 
 class Symbole {
-   public:
-      Symbole(int i) : ident(i){}
-      virtual ~Symbole() { }
-      void print();
-      bool isTerminal() {return ident != EXPR;}
-      operator int() const { return ident; }
-      virtual void Affiche();
+public:
+    explicit Symbole(int i) : ident(i){}
+    virtual ~Symbole() = default;
+    bool isTerminal() const {return ident != EXPR;}
+    explicit operator int() const { return ident; }
+    virtual void Affiche();
 
-   protected:
-      int ident;
+protected:
+    int ident;
 };
 
 class SymboleEvalue : public Symbole {
 public:
     SymboleEvalue(int ident, int valeur) : Symbole(ident), valeur(valeur) {}
-    virtual ~SymboleEvalue() {}
+    ~SymboleEvalue() override = default;
     int getValeur() const {return valeur;}
+    void Affiche() override;
 protected:
     int valeur;
 };
 
 class Expr : public SymboleEvalue {
 public:
-    Expr(int valeur): SymboleEvalue(EXPR, valeur){}
-    virtual ~ Expr() {}
+    explicit Expr(int valeur): SymboleEvalue(EXPR, valeur){}
+    ~ Expr() override = default;
 };
 
 class Entier : public SymboleEvalue {
-   public:
-      Entier(int valeur) : SymboleEvalue(INT, valeur){}
-      ~Entier() { }
-      virtual void Affiche();
+public:
+    explicit Entier(int valeur) : SymboleEvalue(INT, valeur){}
+    ~Entier() override = default;
 };
 
 
-class MultiplicationExpr : public Expr {
+class ExprMult : public Expr {
 public:
-    static MultiplicationExpr *
+    static ExprMult *
     newMultiplication(SymboleEvalue *s1, SymboleEvalue *s2) {
-        return new MultiplicationExpr(s1->getValeur() * s2->getValeur());
+        return new ExprMult(s1->getValeur() * s2->getValeur());
     }
 
 private:
-    explicit MultiplicationExpr(int valeur) : Expr(valeur) {}
+    explicit ExprMult(int valeur) : Expr(valeur) {}
 };
 
-class AdditionExpr : public Expr {
+class ExprPlus : public Expr {
 public:
-    /**
-     * @param s1 SymbolWithValue *
-     * @param s2 SymbolWithValue *
-     * @return AdditionExpr with an evaluated value of s1 + s2.
-     */
-    static AdditionExpr *
+    static ExprPlus *
     newAddition(SymboleEvalue *s1, SymboleEvalue *s2) {
-        return new AdditionExpr(s1->getValeur() + s2->getValeur());
+        return new ExprPlus(s1->getValeur() + s2->getValeur());
     }
 
 private:
-    explicit AdditionExpr(int valeur) : Expr(valeur) {}
+    explicit ExprPlus(int valeur) : Expr(valeur) {}
 };
 
 class OpenPar : public Symbole {
