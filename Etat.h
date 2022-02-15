@@ -51,7 +51,7 @@ protected:
 class E0 : public Etat {
     public :
         E0();
-        virtual ~E0();
+        ~E0() override;
         void print() const;
         bool transition(Automate &automate,
                             Symbole *s) override;

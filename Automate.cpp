@@ -28,9 +28,9 @@ void Automate::reduction(int n, Symbole *s) {
 }
 
 Expr *Automate::popSymbol() {
-    return dynamic_cast<Expr *>(symbolestack.front());
+    return dynamic_cast<Expr *>(symbolestack.back());
 }
 
 void Automate::popAndDestroySymbol() {
-    
+    symbolestack.pop_back();
 }
