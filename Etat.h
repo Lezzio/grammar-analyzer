@@ -1,12 +1,9 @@
 #pragma once
 
-#include <iostream>
 #include <string>
 
 #include "Automate.h"
 #include "symbole.h"
-
-
 using namespace std;
 
 
