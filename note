@@ -1,0 +1,39 @@
+-> mécanique de fonctionnement de l'automate ascendant 
+-> class automate -> pile d'état -> chaque état implémenté sous forme d'une dérivation d'état 
+automate : 
+- pile d'état
+- pile de symbole 
+- class entier qui dérive de symbole pour le int 
+- class expression
+
+
+lexer -> on garde les références dans l'automate
+2 méthodes : sonder ou avancer cf automate LR1 
+
+dans état la fonction de transition prend état 
+pour résoudre  le double référence déclaration anticipé :
+Dans automate : class Etats;
+dans Etats.h => include de automate.h 
+ça ne vaut pas pour les .cpp => il faut inclure des 2 .h
+on protège par la double inclusion @pragma once
+
+
+2 * (3 + 5)
+val * (val + val) $
+I0 
+I0 I3 val 
+I0 I1 E
+I0 I1 I5 *
+I0 I1 I5 I2 (
+I0 I1 I5 I2 I3 val
+I0 I1 I5 I2 I6 E 
+I0 I1 I5 I2 I6 I4 +
+I0 I1 I5 I2 I6 I4 I3 val
+I0 I1 I5 I2 I6 I4 I7 E
+I0 I1 I5 I2 I6 E
+I0 I1 I5 I2 I6 I9 ) 
+I0 I1 E
+IO I1 accepter $
+
+livrable fin de semaine de rentré
+
