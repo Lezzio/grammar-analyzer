@@ -7,6 +7,7 @@
 
 #include "symbole.h"
 #include "Etat.h"
+#include "Lexer.h"
 #include <deque>
 
 using namespace std;
@@ -14,13 +15,17 @@ using namespace std;
 class Automate {
 
 public:
-    Automate(const string& expression, bool nombreNegatif);
-    deque<Symbole*> symbolestack;
-    deque<Etat*> statestack;
+    Automate(const string &expression, bool nombreNegatif);
 
-public:
-    void decalage(Symbole * s, Etat * e);
-    void reduction(int n, Symbole * s);
+    void decalage(Symbole *s, Etat *e);
+
+    void reduction(int n, Symbole *s);
+
+private:
+    deque<Symbole *> symbolestack;
+    deque<Etat *> statestack;
+    Lexer *lexer;
+
 
 };
 
