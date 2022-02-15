@@ -3,4 +3,4 @@ project(TPCompil)
 
 set(CMAKE_CXX_STANDARD 14)
 
-add_executable(TPCompil main.cpp Automate.cpp Automate.h Etat.cpp Etat.h)
+add_executable(TPCompil Automate.cpp State.cpp Lexer.cpp Symbole.cpp main.cpp)

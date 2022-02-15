@@ -1,7 +1,7 @@
 #pragma once
 
 #include <string>
-#include "symbole.h"
+#include "Symbole.h"
 using namespace std;
 
 class Lexer {
