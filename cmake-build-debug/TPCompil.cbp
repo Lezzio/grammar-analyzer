@@ -80,6 +80,18 @@
 				</MakeCommands>
 			</Target>
 		</Build>
+		<Unit filename="/Users/aguigal/CLionProjects/TPCompil/Automate.cpp">
+			<Option target="TPCompil"/>
+		</Unit>
+		<Unit filename="/Users/aguigal/CLionProjects/TPCompil/Automate.h">
+			<Option target="TPCompil"/>
+		</Unit>
+		<Unit filename="/Users/aguigal/CLionProjects/TPCompil/Etat.cpp">
+			<Option target="TPCompil"/>
+		</Unit>
+		<Unit filename="/Users/aguigal/CLionProjects/TPCompil/Etat.h">
+			<Option target="TPCompil"/>
+		</Unit>
 		<Unit filename="/Users/aguigal/CLionProjects/TPCompil/main.cpp">
 			<Option target="TPCompil"/>
 		</Unit>

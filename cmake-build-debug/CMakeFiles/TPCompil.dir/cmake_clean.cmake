@@ -1,4 +1,6 @@
 file(REMOVE_RECURSE
+  "CMakeFiles/TPCompil.dir/Automate.cpp.o"
+  "CMakeFiles/TPCompil.dir/Etat.cpp.o"
   "CMakeFiles/TPCompil.dir/main.cpp.o"
   "TPCompil"
   "TPCompil.pdb"
