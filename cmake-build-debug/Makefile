@@ -142,6 +142,60 @@ TPCompil/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/TPCompil.dir/build.make CMakeFiles/TPCompil.dir/build
 .PHONY : TPCompil/fast
 
+Automate.o: Automate.cpp.o
+
+.PHONY : Automate.o
+
+# target to build an object file
+Automate.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/TPCompil.dir/build.make CMakeFiles/TPCompil.dir/Automate.cpp.o
+.PHONY : Automate.cpp.o
+
+Automate.i: Automate.cpp.i
+
+.PHONY : Automate.i
+
+# target to preprocess a source file
+Automate.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/TPCompil.dir/build.make CMakeFiles/TPCompil.dir/Automate.cpp.i
+.PHONY : Automate.cpp.i
+
+Automate.s: Automate.cpp.s
+
+.PHONY : Automate.s
+
+# target to generate assembly for a file
+Automate.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/TPCompil.dir/build.make CMakeFiles/TPCompil.dir/Automate.cpp.s
+.PHONY : Automate.cpp.s
+
+Etat.o: Etat.cpp.o
+
+.PHONY : Etat.o
+
+# target to build an object file
+Etat.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/TPCompil.dir/build.make CMakeFiles/TPCompil.dir/Etat.cpp.o
+.PHONY : Etat.cpp.o
+
+Etat.i: Etat.cpp.i
+
+.PHONY : Etat.i
+
+# target to preprocess a source file
+Etat.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/TPCompil.dir/build.make CMakeFiles/TPCompil.dir/Etat.cpp.i
+.PHONY : Etat.cpp.i
+
+Etat.s: Etat.cpp.s
+
+.PHONY : Etat.s
+
+# target to generate assembly for a file
+Etat.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/TPCompil.dir/build.make CMakeFiles/TPCompil.dir/Etat.cpp.s
+.PHONY : Etat.cpp.s
+
 main.o: main.cpp.o
 
 .PHONY : main.o
@@ -178,6 +232,12 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... TPCompil"
+	@echo "... Automate.o"
+	@echo "... Automate.i"
+	@echo "... Automate.s"
+	@echo "... Etat.o"
+	@echo "... Etat.i"
+	@echo "... Etat.s"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"
