@@ -45,6 +45,19 @@ void Automate::run(){
 }
 
 void Automate::decalage(Symbole *s, Etat *e) {
+    #ifdef MAP
+        cout << "-----------" << endl;
+        cout << "Decalage : " << endl;
+        statestack.back()->print();
+        cout << "Avec le symbole : ";
+        s->Affiche();
+        if(e != nullptr){
+            cout << endl << " ==> ";
+            e->print();
+        }
+        cout << endl;
+    #endif
+    
     symbolestack.push_back(s);
     statestack.push_back(e);
     if (s->isTerminal()) {

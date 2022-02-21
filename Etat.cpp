@@ -60,6 +60,11 @@ bool E1::transition(Automate &automate, Symbole *s)
         automate.decalage(s, new E5);
         break;
     case FIN:
+        #ifdef MAP
+            cout << "-----------" << endl;
+            cout << "accepter " << endl;
+            cout << endl;
+        #endif
         delete (s);
         return false;
     default: 
@@ -118,7 +123,11 @@ bool E3::transition(Automate &automate, Symbole *s)
     case CLOSEPAR:
     case FIN:
         {
-        //cout << "reduction E3 " << endl; // DEBUG
+        #ifdef MAP
+            cout << "-----------" << endl;
+            cout << "reduction R5 " << endl; // DEBUG
+            cout << endl;
+        #endif
         Entier * valeur = (Entier *) automate.popSymbol();
         automate.reduction(1, new Expr(valeur->getValeur()));
         delete (valeur);
@@ -240,6 +249,11 @@ bool E7::transition(Automate &automate, Symbole *s)
     case CLOSEPAR:
     case FIN:
         {
+        #ifdef MAP
+            cout << "-----------" << endl;
+            cout << "reduction R2 " << endl; // DEBUG
+            cout << endl;
+        #endif
         Expr * s1 = (Expr *) automate.popSymbol();
         automate.popAndDestroySymbol();
         Expr * s2 = (Expr *) automate.popSymbol();
@@ -278,6 +292,11 @@ bool E8::transition(Automate &automate, Symbole *s)
     case CLOSEPAR:
     case FIN:
         {
+        #ifdef MAP
+            cout << "-----------" << endl;
+            cout << "reduction R3 " << endl; // DEBUG
+            cout << endl;
+        #endif
         Expr * s1 = (Expr *) automate.popSymbol();
         automate.popAndDestroySymbol();
         Expr * s2 = (Expr *) automate.popSymbol();
@@ -313,7 +332,10 @@ bool E9::transition(Automate &automate, Symbole *s)
     case CLOSEPAR:
     case FIN:
         {
-        //cout << "reduction E9 " << endl; // DEBUG
+        #ifdef MAP
+            cout << "-----------" << endl;
+            cout << "reduction R4 " << endl; // DEBUG
+        #endif
         automate.popAndDestroySymbol();
         Entier * valeur = (Entier *) automate.popSymbol();
         automate.popAndDestroySymbol();

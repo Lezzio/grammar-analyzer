@@ -8,7 +8,7 @@ You can run the executable in 2 different ways :
 
 ### `./main`
 
-Run the analyzer. You just have to enter if you want to evaluate the negative numbers or not as well as the expression to analyze.
+Runs the analyzer. You just have to enter if you want to evaluate the negative numbers or not as well as the expression to analyze.
 
 ### `./main "18+19" [NEGATIVE=TRUE]`
 
@@ -26,7 +26,7 @@ Compiles source files, generates binary files and creates the project executable
 
 ### `make run`
 
-Run the executable
+Runs the executable
 
 ### `make memcheck`
 
@@ -34,7 +34,7 @@ Executes the .exe with valgrind to check the use of memory
 
 ### `make clean`
 
-Delete compiled files
+Deletes compiled files
 
 ## Tests
 
