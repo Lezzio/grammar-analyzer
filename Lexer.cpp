@@ -1,4 +1,5 @@
 #include "Lexer.h"
+#include <iostream>
 
 Symbole * Lexer::Consulter() {
    if (!tampon) {

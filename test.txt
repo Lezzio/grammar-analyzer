@@ -1,0 +1,2 @@
+test qui passe : 
+42

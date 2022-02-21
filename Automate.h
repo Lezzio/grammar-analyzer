@@ -17,11 +17,13 @@ class Automate {
 public:
     Automate(const string &expression);
 
+    void run();
+
     void decalage(Symbole *s, Etat *e);
 
     void reduction(int n, Symbole *s);
 
-    Expr * popSymbol();
+    SymboleEvalue * popSymbol();
 
     void popAndDestroySymbol();
 
