@@ -5,26 +5,43 @@
 #include "Automate.h"
 #include "Etat.h"
 
+
+
 Automate::Automate(const string &expr) {
     this->lexer = new Lexer(expr);
     auto *etatInitial = new E0();
     statestack.push_back(etatInitial);
 }
 
+Automate::~Automate(){
+    delete (lexer);
+    while(!statestack.empty())
+    {
+        delete (statestack.back());
+        statestack.pop_back();
+    }
+
+    while(!symbolestack.empty())
+    {
+        delete (symbolestack.back());
+        symbolestack.pop_back();
+    }
+}
+
 void Automate::run(){
     bool etatSuivant = true;
-    //cout << "ici1" << endl;
+   // cout << "ici1" << endl;
     while (etatSuivant){
-     //   cout << "ici boucle" << endl;
+   //    cout << "ici boucle" << endl;
         Symbole * s = lexer->Consulter();
-     //   s->Affiche();
-     //   cout << endl;
+   //    s->Affiche();
+   //    cout << endl;
         lexer->Avancer();
-     //   statestack.back()->print();
+   //    statestack.back()->print();
         etatSuivant = statestack.back()->transition(*this,s);
-     //   statestack.back()->print();
-     //   cout << etatSuivant << endl;
-     //   cout << "fin boucle" << endl;
+   //     statestack.back()->print();
+   //     cout << etatSuivant << endl;
+   //     cout << "fin boucle" << endl;
     }
    // cout << "ici plus boucle" << endl;
     if(*symbolestack.back() == ERREUR){
@@ -50,12 +67,20 @@ void Automate::reduction(int n, Symbole *s) {
         statestack.pop_back();
     }
     statestack.back()->transition(*this, s);
+    //lexer->SetTampon(s);
 }
 
 SymboleEvalue *Automate::popSymbol() {
-    return dynamic_cast<SymboleEvalue *>(symbolestack.back());
+    SymboleEvalue * eval=  dynamic_cast<SymboleEvalue *>(symbolestack.back());
+    symbolestack.pop_back();
+    return eval;
+}
+
+void Automate::pushSymbol(Symbole * s){
+    lexer->SetTampon(s);
 }
 
 void Automate::popAndDestroySymbol() {
+    delete (symbolestack.back());
     symbolestack.pop_back();
 }

@@ -8,10 +8,11 @@ class Lexer {
 
    public:
       Lexer(string s) : flux(s), tete(0), tampon(nullptr) { }
-      ~Lexer() { }
+      ~Lexer() { delete (tampon); }
 
       Symbole * Consulter();
       void Avancer();
+      void SetTampon(Symbole *s);
 
    protected:
       string flux;

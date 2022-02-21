@@ -118,9 +118,11 @@ bool E3::transition(Automate &automate, Symbole *s)
     case CLOSEPAR:
     case FIN:
         {
-       // cout << "reduction E3 " << endl; // DEBUG
+        //cout << "reduction E3 " << endl; // DEBUG
         Entier * valeur = (Entier *) automate.popSymbol();
         automate.reduction(1, new Expr(valeur->getValeur()));
+        delete (valeur);
+        automate.pushSymbol(s);
         break;    
         }
     default: 
@@ -242,6 +244,9 @@ bool E7::transition(Automate &automate, Symbole *s)
         automate.popAndDestroySymbol();
         Expr * s2 = (Expr *) automate.popSymbol();
         automate.reduction(3, new ExprPlus(s2, s1));
+        delete(s1);
+        delete(s2);
+        automate.pushSymbol(s);
         break; 
         } 
     case MULT:
@@ -277,6 +282,9 @@ bool E8::transition(Automate &automate, Symbole *s)
         automate.popAndDestroySymbol();
         Expr * s2 = (Expr *) automate.popSymbol();
         automate.reduction(3, new ExprMult(s2, s1));
+        delete(s1);
+        delete(s2);
+        automate.pushSymbol(s);
         break;  
         }    
     default: 
@@ -304,8 +312,16 @@ bool E9::transition(Automate &automate, Symbole *s)
     case MULT:
     case CLOSEPAR:
     case FIN:
-        automate.reduction(3, s);
-        break;        
+        {
+        //cout << "reduction E9 " << endl; // DEBUG
+        automate.popAndDestroySymbol();
+        Entier * valeur = (Entier *) automate.popSymbol();
+        automate.popAndDestroySymbol();
+        automate.reduction(3, new Expr(valeur->getValeur()));
+        delete (valeur);
+        automate.pushSymbol(s);
+        break;
+        }        
     default: 
         delete (s);
         automate.decalage(new Symbole(ERREUR), nullptr);

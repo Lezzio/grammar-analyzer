@@ -50,3 +50,7 @@ void Lexer::Avancer() {
    tampon = nullptr;
 }
 
+void Lexer::SetTampon(Symbole *s){
+   tampon = s;
+}
+
