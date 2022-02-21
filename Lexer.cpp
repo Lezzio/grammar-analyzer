@@ -27,8 +27,8 @@ Symbole * Lexer::Consulter() {
                tete++;
                break;
             case ' ':
-               tampon = nullptr;
                tete++;
+               tampon = this->Consulter();
                break;   
             default:
                if (flux[tete]<='9' && flux[tete]>='0') {
