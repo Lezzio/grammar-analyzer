@@ -56,14 +56,14 @@ bool E1::transition(Automate &automate, Symbole *s)
     case PLUS:
         automate.decalage(s, new E4);    
         break;
-    case MUTL:
+    case MULT:
         automate.decalage(s, new E5);
         break;
     case FIN:
         delete (s);
         return false;
     default: 
-        delete (s)
+        delete (s);
         automate.decalage(new Symbole(ERREUR), nullptr);
         return false;
     }
@@ -114,11 +114,15 @@ bool E3::transition(Automate &automate, Symbole *s)
     switch (*s)
     {
     case PLUS:
-    case MUTL:
+    case MULT:
     case CLOSEPAR:
     case FIN:
-        automate.reduction(1, s);
+        {
+       // cout << "reduction E3 " << endl; // DEBUG
+        Entier * valeur = (Entier *) automate.popSymbol();
+        automate.reduction(1, new Expr(valeur->getValeur()));
         break;    
+        }
     default: 
         delete (s);
         automate.decalage(new Symbole(ERREUR), nullptr);
@@ -203,7 +207,7 @@ bool E6::transition(Automate &automate, Symbole *s)
     case PLUS:
         automate.decalage(s, new E4);    
         break;
-    case MUTL:
+    case MULT:
         automate.decalage(s, new E5);
         break;
     case CLOSEPAR:
@@ -233,12 +237,14 @@ bool E7::transition(Automate &automate, Symbole *s)
     case PLUS:
     case CLOSEPAR:
     case FIN:
+        {
         Expr * s1 = (Expr *) automate.popSymbol();
         automate.popAndDestroySymbol();
         Expr * s2 = (Expr *) automate.popSymbol();
         automate.reduction(3, new ExprPlus(s2, s1));
-        break;  
-    case MUTL:
+        break; 
+        } 
+    case MULT:
         automate.decalage(s, new E5);    
         break;       
     default: 
@@ -263,14 +269,16 @@ bool E8::transition(Automate &automate, Symbole *s)
     switch (*s)
     {
     case PLUS:
-    case MUTL:
+    case MULT:
     case CLOSEPAR:
     case FIN:
+        {
         Expr * s1 = (Expr *) automate.popSymbol();
         automate.popAndDestroySymbol();
         Expr * s2 = (Expr *) automate.popSymbol();
         automate.reduction(3, new ExprMult(s2, s1));
-        break;      
+        break;  
+        }    
     default: 
         delete (s);
         automate.decalage(new Symbole(ERREUR), nullptr);
@@ -293,7 +301,7 @@ bool E9::transition(Automate &automate, Symbole *s)
     switch (*s)
     {
     case PLUS:
-    case MUTL:
+    case MULT:
     case CLOSEPAR:
     case FIN:
         automate.reduction(3, s);

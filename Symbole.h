@@ -10,10 +10,10 @@ const string Etiquettes[] = { "OPENPAR", "CLOSEPAR", "PLUS", "MULT", "INT", "FIN
 
 class Symbole {
 public:
-    explicit Symbole(int i) : ident(i){}
+    Symbole(int i) : ident(i){}
     virtual ~Symbole() = default;
     bool isTerminal() const {return ident != EXPR;}
-    explicit operator int() const { return ident; }
+    operator int() const { return ident; }
     virtual void Affiche();
 
 protected:
@@ -45,6 +45,8 @@ public:
 
 class ExprMult : public Expr {
 public:
+    ExprMult(SymboleEvalue *s1, SymboleEvalue *s2) : Expr(s1->getValeur() * s2->getValeur()) 
+    {}
     static ExprMult *
     newMultiplication(SymboleEvalue *s1, SymboleEvalue *s2) {
         return new ExprMult(s1->getValeur() * s2->getValeur());
@@ -56,6 +58,8 @@ private:
 
 class ExprPlus : public Expr {
 public:
+    ExprPlus(SymboleEvalue *s1, SymboleEvalue *s2) : Expr(s1->getValeur() + s2->getValeur()) 
+    {}
     static ExprPlus *
     newAddition(SymboleEvalue *s1, SymboleEvalue *s2) {
         return new ExprPlus(s1->getValeur() + s2->getValeur());

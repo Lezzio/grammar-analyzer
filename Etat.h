@@ -3,7 +3,7 @@
 #include <string>
 
 #include "Automate.h"
-#include "Symbole.h"
+#include "symbole.h"
 using namespace std;
 
 /**
