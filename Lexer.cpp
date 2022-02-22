@@ -1,6 +1,15 @@
 #include "Lexer.h"
 #include <iostream>
 
+
+bool estUnChiffre(const char c){
+    return c <= '9' && c >= '0';
+}
+
+int charToInt(const char c){
+    return c - '0';
+}
+
 Symbole * Lexer::Consulter() {
    if (!tampon) {
 
@@ -31,6 +40,23 @@ Symbole * Lexer::Consulter() {
                tampon = this->Consulter();
                break;   
             default:
+                if(estUnChiffre(flux[tete])){
+                    int resultat = charToInt(flux[tete]);
+                    while(estUnChiffre(flux[++tete])){
+                        resultat = resultat*10 + charToInt(flux[tete]);
+                    }
+                    tampon = new Entier(resultat);
+                }else if (flux[tete++] == '-' && estUnChiffre(flux[tete])){
+                    int resultat = charToInt(flux[tete]);
+                    while (estUnChiffre(flux[++tete])){
+                        resultat = resultat*10 + charToInt(flux[tete]);
+                    }
+                    tampon = new Entier(-resultat);
+                } else {
+                    tampon = new Symbole(ERREUR);
+                }
+
+                /*
                if (flux[tete]<='9' && flux[tete]>='0') {
                   int resultat = flux[tete]-'0';
                   int i=1;
@@ -40,10 +66,8 @@ Symbole * Lexer::Consulter() {
                   }
                   tete = tete+i;
                   tampon = new Entier(resultat);
-               }
-               else {
-                  tampon = new Symbole(ERREUR);
-               }
+               }*/
+
          }
       }
    }
