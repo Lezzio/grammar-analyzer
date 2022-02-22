@@ -10,12 +10,14 @@
 #include <deque>
 
 class Etat;
+
 using namespace std;
 
 class Automate {
 
 public:
-    Automate(const string &expression);
+    explicit Automate(const string &expression);
+
     ~Automate();
 
     void run();
@@ -24,7 +26,8 @@ public:
 
     void reduction(int n, Symbole *s);
 
-    SymboleEvalue * popSymbol();
+    SymboleEvalue *popSymbol();
+
     void pushSymbol(Symbole *s);
 
     void popAndDestroySymbol();
@@ -33,8 +36,6 @@ private:
     deque<Symbole *> symbolestack;
     deque<Etat *> statestack;
     Lexer *lexer;
-
-
 
 };
 

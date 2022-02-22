@@ -5,37 +5,33 @@
 #include "Automate.h"
 #include "Etat.h"
 
-
-
 Automate::Automate(const string &expr) {
     this->lexer = new Lexer(expr);
     auto *etatInitial = new E0();
     statestack.push_back(etatInitial);
 }
 
-Automate::~Automate(){
+Automate::~Automate() {
     delete (lexer);
-    while(!statestack.empty())
-    {
+    while (!statestack.empty()) {
         delete (statestack.back());
         statestack.pop_back();
     }
 
-    while(!symbolestack.empty())
-    {
+    while (!symbolestack.empty()) {
         delete (symbolestack.back());
         symbolestack.pop_back();
     }
 }
 
-void Automate::run(){
+void Automate::run() {
     bool etatSuivant = true;
-    while (etatSuivant){
-        Symbole * s = lexer->Consulter();
+    while (etatSuivant) {
+        Symbole *s = lexer->Consulter();
         lexer->Avancer();
-        etatSuivant = statestack.back()->transition(*this,s);
+        etatSuivant = statestack.back()->transition(*this, s);
     }
-    if(*symbolestack.back() == ERREUR){
+    if (*symbolestack.back() == ERREUR) {
         cout << "Mauvaise expression syntaxique." << endl;
         cout << "Veuillez réessayer avec une expression valide" << endl;
     } else {
@@ -45,19 +41,19 @@ void Automate::run(){
 }
 
 void Automate::decalage(Symbole *s, Etat *e) {
-    #ifdef MAP
-        cout << "-----------" << endl;
-        cout << "Decalage : " << endl;
-        statestack.back()->print();
-        cout << "Avec le symbole : ";
-        s->Affiche();
-        if(e != nullptr){
-            cout << endl << " ==> ";
-            e->print();
-        }
-        cout << endl;
-    #endif
-    
+#ifdef MAP
+    cout << "-----------" << endl;
+    cout << "Decalage : " << endl;
+    statestack.back()->print();
+    cout << "Avec le symbole : ";
+    s->Affiche();
+    if(e != nullptr){
+        cout << endl << " ==> ";
+        e->print();
+    }
+    cout << endl;
+#endif
+
     symbolestack.push_back(s);
     statestack.push_back(e);
     if (s->isTerminal()) {
@@ -75,12 +71,12 @@ void Automate::reduction(int n, Symbole *s) {
 }
 
 SymboleEvalue *Automate::popSymbol() {
-    SymboleEvalue * eval=  dynamic_cast<SymboleEvalue *>(symbolestack.back());
+    auto *eval = dynamic_cast<SymboleEvalue *>(symbolestack.back());
     symbolestack.pop_back();
     return eval;
 }
 
-void Automate::pushSymbol(Symbole * s){
+void Automate::pushSymbol(Symbole *s) {
     lexer->SetTampon(s);
 }
 
