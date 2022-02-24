@@ -16,7 +16,7 @@ using namespace std;
 class Automate {
 
 public:
-    explicit Automate(const string &expression);
+    explicit Automate(const string &expression, bool negatifs);
 
     ~Automate();
 
@@ -36,6 +36,7 @@ private:
     deque<Symbole *> symbolestack;
     deque<Etat *> statestack;
     Lexer *lexer;
+    bool negatifs;
 
 };
 

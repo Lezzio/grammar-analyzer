@@ -46,7 +46,7 @@ Symbole * Lexer::Consulter() {
                         resultat = resultat*10 + charToInt(flux[tete]);
                     }
                     tampon = new Entier(resultat);
-                }else if (flux[tete++] == '-' && estUnChiffre(flux[tete])){
+                }else if (negatifs && flux[tete++] == '-' && estUnChiffre(flux[tete])){
                     int resultat = charToInt(flux[tete]);
                     while (estUnChiffre(flux[++tete])){
                         resultat = resultat*10 + charToInt(flux[tete]);

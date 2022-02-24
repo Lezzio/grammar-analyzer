@@ -4,11 +4,15 @@
 
 int main(int argc, char *argv[]) {
     string in;
-
-    if (argc == 2) {
+    bool negatifs = false;
+    if (argc >= 2) {
         cout << "Expression evaluee : " << argv[1] << endl;
         string expr = argv[1];
-        auto *a = new Automate(expr);
+
+        if (argc == 3 && strcmp(argv[2],"[NEGATIVE=TRUE]") == 0){
+            negatifs = true;
+        }
+        auto *a = new Automate(expr, negatifs);
         a->run();
         delete (a);
         return 0;
@@ -21,7 +25,7 @@ int main(int argc, char *argv[]) {
             cout << "Fermeture de l'analyseur" << endl;
             break;
         }
-        auto *a = new Automate(in);
+        auto *a = new Automate(in, negatifs);
         a->run();
         delete (a);
     }

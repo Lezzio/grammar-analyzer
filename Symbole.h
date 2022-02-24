@@ -19,7 +19,7 @@ public:
 
     bool isTerminal() const { return ident != EXPR; }
 
-    explicit operator int() const { return ident; }
+    operator int() const { return ident; }
 
     virtual void Affiche();
 

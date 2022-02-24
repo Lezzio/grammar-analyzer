@@ -5,8 +5,9 @@
 #include "Automate.h"
 #include "Etat.h"
 
-Automate::Automate(const string &expr) {
-    this->lexer = new Lexer(expr);
+Automate::Automate(const string &expr, bool negatifs) {
+    this->lexer = new Lexer(expr, negatifs);
+    Automate::negatifs = negatifs;
     auto *etatInitial = new E0();
     statestack.push_back(etatInitial);
 }
