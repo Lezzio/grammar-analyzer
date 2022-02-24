@@ -3,7 +3,7 @@
 
 
 int main(int argc, char *argv[]) {
-    string in;
+    string in, neg;
     bool negatifs = false;
     if (argc >= 2) {
         cout << "Expression evaluee : " << argv[1] << endl;
@@ -24,6 +24,14 @@ int main(int argc, char *argv[]) {
         if (in == "-quit") {
             cout << "Fermeture de l'analyseur" << endl;
             break;
+        }
+        cout << "Saisissez '-neg' pour que l'automate reconnaisse les entiers negatifs sinon Entree" << endl;
+        getline(cin, neg);
+        negatifs = (neg == "-neg");
+        if(negatifs){
+            cout << "L'automate prend en charge les entiers negatifs" << endl;
+        } else {
+            cout << "L'automate ne prend pas en charge les entiers negatifs" << endl;
         }
         auto *a = new Automate(in, negatifs);
         a->run();
