@@ -6,7 +6,8 @@
 
 using namespace std;
 
-class Lexer {
+class Lexer
+{
 
 public:
     explicit Lexer(string s, bool negatifs) : flux(std::move(s)), tete(0), tampon(nullptr), negatifs(negatifs) {}

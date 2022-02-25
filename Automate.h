@@ -13,7 +13,8 @@ class Etat;
 
 using namespace std;
 
-class Automate {
+class Automate
+{
 
 public:
     explicit Automate(const string &expression, bool negatifs);
@@ -37,7 +38,6 @@ private:
     deque<Etat *> statestack;
     Lexer *lexer;
     bool negatifs;
-
 };
 
-#endif //TPCOMPIL_AUTOMATE_H
+#endif // TPCOMPIL_AUTOMATE_H

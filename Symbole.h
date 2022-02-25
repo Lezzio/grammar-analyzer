@@ -5,13 +5,22 @@
 
 using namespace std;
 
-enum Identificateurs {
-    OPENPAR, CLOSEPAR, PLUS, MULT, INT, FIN, ERREUR, EXPR
+enum Identificateurs
+{
+    OPENPAR,
+    CLOSEPAR,
+    PLUS,
+    MULT,
+    INT,
+    FIN,
+    ERREUR,
+    EXPR
 };
 
 const string Etiquettes[] = {"OPENPAR", "CLOSEPAR", "PLUS", "MULT", "INT", "FIN", "ERREUR", "EXPR"};
 
-class Symbole {
+class Symbole
+{
 public:
     explicit Symbole(int i) : ident(i) {}
 
@@ -27,7 +36,8 @@ protected:
     int ident;
 };
 
-class SymboleEvalue : public Symbole {
+class SymboleEvalue : public Symbole
+{
 public:
     SymboleEvalue(int ident, int valeur) : Symbole(ident), valeur(valeur) {}
 
@@ -41,27 +51,30 @@ protected:
     int valeur;
 };
 
-class Expr : public SymboleEvalue {
+class Expr : public SymboleEvalue
+{
 public:
     explicit Expr(int valeur) : SymboleEvalue(EXPR, valeur) {}
 
-    ~ Expr() override = default;
+    ~Expr() override = default;
 };
 
-class Entier : public SymboleEvalue {
+class Entier : public SymboleEvalue
+{
 public:
     explicit Entier(int valeur) : SymboleEvalue(INT, valeur) {}
 
     ~Entier() override = default;
 };
 
-
-class ExprMult : public Expr {
+class ExprMult : public Expr
+{
 public:
     ExprMult(SymboleEvalue *s1, SymboleEvalue *s2) : Expr(s1->getValeur() * s2->getValeur()) {}
 };
 
-class ExprPlus : public Expr {
+class ExprPlus : public Expr
+{
 public:
     ExprPlus(SymboleEvalue *s1, SymboleEvalue *s2) : Expr(s1->getValeur() + s2->getValeur()) {}
 };

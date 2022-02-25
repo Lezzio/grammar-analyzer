@@ -10,9 +10,9 @@ You can run the executable in 2 different ways :
 
 Runs the analyzer. You just have to enter if you want to evaluate the negative numbers or not as well as the expression to analyze.
 
-### `./main "18+19" [NEGATIVE=TRUE]`
+### `./main "18+19" [-neg]`
 
-Run the analyzer only once. The analyzer evaluates the expression in parameter and considers negative integer if NEGATIVE=TRUE is defined.
+Run the analyzer only once. The analyzer evaluates the expression in parameter and considers negative integer if -neg is defined.
 
 ## Makefile 
 

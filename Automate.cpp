@@ -3,53 +3,65 @@
 //
 #include <iostream>
 #include "Automate.h"
-#include "Etat.h"
+#include "etat.h"
 
-Automate::Automate(const string &expr, bool negatifs) {
+Automate::Automate(const string &expr, bool negatifs)
+{
     this->lexer = new Lexer(expr, negatifs);
     Automate::negatifs = negatifs;
     auto *etatInitial = new E0();
     statestack.push_back(etatInitial);
 }
 
-Automate::~Automate() {
+Automate::~Automate()
+{
     delete (lexer);
-    while (!statestack.empty()) {
+    while (!statestack.empty())
+    {
         delete (statestack.back());
         statestack.pop_back();
     }
 
-    while (!symbolestack.empty()) {
+    while (!symbolestack.empty())
+    {
         delete (symbolestack.back());
         symbolestack.pop_back();
     }
 }
 
-void Automate::run() {
+void Automate::run()
+{
     bool etatSuivant = true;
-    while (etatSuivant) {
+    while (etatSuivant)
+    {
         Symbole *s = lexer->Consulter();
         lexer->Avancer();
         etatSuivant = statestack.back()->transition(*this, s);
     }
-    if (*symbolestack.back() == ERREUR) {
+    if (*symbolestack.back() == ERREUR)
+    {
         cout << "Mauvaise expression syntaxique." << endl;
         cout << "Veuillez réessayer avec une expression valide" << endl;
-    } else {
-        int result = ((Expr *) symbolestack.back())->getValeur();
-        cout << "Le résult de l'évaluation de l'expression est : " << result << endl;
+    }
+    else
+    {
+        int result = ((Expr *)symbolestack.back())->getValeur();
+        cout << "Le résultat de l'évaluation de l'expression est : " << result << endl;
     }
 }
 
-void Automate::decalage(Symbole *s, Etat *e) {
+void Automate::decalage(Symbole *s, Etat *e)
+{
 #ifdef MAP
     cout << "-----------" << endl;
     cout << "Decalage : " << endl;
     statestack.back()->print();
     cout << "Avec le symbole : ";
     s->Affiche();
-    if(e != nullptr){
-        cout << endl << " ==> ";
+    if (e != nullptr)
+    {
+        cout << endl
+             << " ==> ";
         e->print();
     }
     cout << endl;
@@ -57,31 +69,37 @@ void Automate::decalage(Symbole *s, Etat *e) {
 
     symbolestack.push_back(s);
     statestack.push_back(e);
-    if (s->isTerminal()) {
+    if (s->isTerminal())
+    {
         lexer->Avancer();
     }
 }
 
-void Automate::reduction(int n, Symbole *s) {
-    for (int i = 0; i < n; i++) {
+void Automate::reduction(int n, Symbole *s)
+{
+    for (int i = 0; i < n; i++)
+    {
         delete (statestack.back());
         statestack.pop_back();
     }
     statestack.back()->transition(*this, s);
-    //lexer->SetTampon(s);
+    // lexer->SetTampon(s);
 }
 
-SymboleEvalue *Automate::popSymbol() {
+SymboleEvalue *Automate::popSymbol()
+{
     auto *eval = dynamic_cast<SymboleEvalue *>(symbolestack.back());
     symbolestack.pop_back();
     return eval;
 }
 
-void Automate::pushSymbol(Symbole *s) {
+void Automate::pushSymbol(Symbole *s)
+{
     lexer->SetTampon(s);
 }
 
-void Automate::popAndDestroySymbol() {
+void Automate::popAndDestroySymbol()
+{
     delete (symbolestack.back());
     symbolestack.pop_back();
 }
