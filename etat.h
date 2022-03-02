@@ -8,13 +8,12 @@
 using namespace std;
 
 /**
- * @brief
- *
+ * State of the automaton (Finite State Machine)
  */
 class Etat {
 public:
     /**
-     * Construct a new Etat object
+     * Construct a new Etat object, representing a state of the automaton
      * @param name of the state
      */
     explicit Etat(string name);
@@ -24,16 +23,18 @@ public:
      */
     virtual ~Etat();
 
+    /**
+     * Print the state's attributes on the CLI
+     */
     virtual void print() const;
 
     /**
-     *
+     * Transition to another state inside the automaton based on the provided symbol
      * @param automate
-     * @param s
-     * @return true
-     * @return false
+     * @param symbole
+     * @return whether the transition successful or not, false hence means an error occurred
      */
-    virtual bool transition(Automate &automate, Symbole *s) = 0;
+    virtual bool transition(Automate &automate, Symbole *symbole) = 0;
 
 protected:
     string name;
