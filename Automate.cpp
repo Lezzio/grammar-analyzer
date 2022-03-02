@@ -50,40 +50,39 @@ void Automate::run()
     }
 }
 
-void Automate::decalage(Symbole *s, Etat *e)
+void Automate::decalage(Symbole *symbole, Etat *etat)
 {
 #ifdef MAP
     cout << "-----------" << endl;
     cout << "Decalage : " << endl;
     statestack.back()->print();
     cout << "Avec le symbole : ";
-    s->Affiche();
-    if (e != nullptr)
+    symbole->Affiche();
+    if (etat != nullptr)
     {
         cout << endl
              << " ==> ";
-        e->print();
+        etat->print();
     }
     cout << endl;
 #endif
-
-    symbolestack.push_back(s);
-    statestack.push_back(e);
-    if (s->isTerminal())
+    symbolestack.push_back(symbole);
+    statestack.push_back(etat);
+    if (symbole->isTerminal())
     {
         lexer->Avancer();
     }
 }
 
-void Automate::reduction(int n, Symbole *s)
+void Automate::reduction(int n, Symbole *symbole)
 {
     for (int i = 0; i < n; i++)
     {
         delete (statestack.back());
         statestack.pop_back();
     }
-    statestack.back()->transition(*this, s);
-    // lexer->SetTampon(s);
+    statestack.back()->transition(*this, symbole);
+    // lexer->SetTampon(symbole);
 }
 
 SymboleEvalue *Automate::popSymbol()
@@ -93,9 +92,9 @@ SymboleEvalue *Automate::popSymbol()
     return eval;
 }
 
-void Automate::pushSymbol(Symbole *s)
+void Automate::pushSymbol(Symbole *symbole)
 {
-    lexer->SetTampon(s);
+    lexer->SetTampon(symbole);
 }
 
 void Automate::popAndDestroySymbol()
