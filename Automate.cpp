@@ -82,7 +82,6 @@ void Automate::reduction(int n, Symbole *symbole)
         statestack.pop_back();
     }
     statestack.back()->transition(*this, symbole);
-    // lexer->SetTampon(symbole);
 }
 
 SymboleEvalue *Automate::popSymbol()
