@@ -1,6 +1,7 @@
 # grammar-analyzer
 
-TODO :: Description ...
+This project implements a bottom-up grammar analyzer using an automaton.
+It aims at analysing and executing the arithmetic grammar, thus supporting simple mathematics operations such as additions (+), subtractions (-), multiplication (*) and parentheses priority
 
 ## Executable
 
