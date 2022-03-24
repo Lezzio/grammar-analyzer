@@ -42,7 +42,7 @@ int main(int argc, char *argv[])
             cout << "Fermeture de l'analyseur" << endl;
             break;
         }
-
+        cin.sync();
         auto *a = new Automate(in, negatifs);
         a->run();
         delete (a);
